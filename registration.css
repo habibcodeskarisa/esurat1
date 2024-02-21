@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+::selection {
+    color: white;
+    background-color: #4fad62;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+    padding: 50px;
+    background-repeat: no-repeat;
+    font-family: "Open Sans", sans-serif;
+    background:linear-gradient(160deg, #4fad62, #02aa6c);
+    height: 100vh;
+}
+
+.card-content {
+    background: #fbfbfb;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+    padding-top: 45px!important;
+    height: 400px;
+    margin: 3rem auto   8.1rem auto;
+    /* width: 329px; */
+    padding: 12px 44px;
+}
+
+.card-content .alert {
+    position: absolute;
+    margin-top: -137px!important;
+    width: 150px;
+    text-align: center;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.card-content .card-form {
+    letter-spacing: 1px;
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-form header {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-form h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    color: #02aa6c;
+    font-family: 'Lilita One', sans-serif;
+}
+
+.card-form .underline-title {
+    background: linear-gradient(90deg, #a6f77b, #02aa6c);
+    height: 2px;
+    margin: -1.1rem auto 0 auto;
+    width: 89px;
+}
+
+.card-form .wrap-link-pw {
+    text-decoration: none;
+}
+
+.card-form .form-content label {
+    font-weight: bold;
+    font-size: 12px;
+    text-align: left;
+}
+
+.form-border {
+    background: linear-gradient(90deg, #a6f77b, #02aa6c );
+    height: 2px;
+    width: 100%;
+}
+
+.form-content {
+    background: #fbfbfb;
+    border: none;
+    outline: none;
+    padding-top: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    margin-top: -20px;
+    padding-bottom: 5px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 12px;
+}
+
+.card-form footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-form footer .submit-btn {
+    background: linear-gradient(90deg, #1bff48, #00961e);
+    border: none;
+    border-radius: 21px;
+    box-shadow: 0px 1px 5px #4fad62;
+    cursor: pointer;
+    color: white;
+    height: 42.3px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 190px;
+    background-size: 150%;
+}
+
+@keyframes btn-gradient {
+    from {
+        background-position: right;
+    }
+    to {
+        background-position: left;
+    }
+}
+
+.card-form footer .submit-btn:hover {
+    box-shadow: 0px 1px 10px #4fad62;
+    animation: btn-gradient 70ms infinite alternate;
+    -webkit-animation: btn-gradient 100ms infinite alternate;
+    -webkit-animation: btn-gradient 70ms infinite alternate;
+}
+
+.card-form footer .signin {
+    text-decoration: none;
+    color: #4fad62;
+    font-size: 10px;
+    margin-top: 16px;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.card-form footer .signin:hover {
+    color: #8ae8a1;
+}
+
+/* Smartphone */
+/* @media (max-width: 576px) {
+    .container {
+        padding: 20px;
+    }
+} */
+
+/* Tablet */
+/* @media (min-width: 576px) and (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+} */
+
+/* Laptop */
+/* @media (min-width: 768px) and (max-width: 992px) {
+    .container {
+        padding: 40px;
+    }
+} */
+
+/* Desktop */
+/* @media (min-width: 992px) {
+    .container {
+        padding: 50px;
+    }
+} */
