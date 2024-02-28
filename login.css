@@ -66,11 +66,22 @@ body {
     text-align: left;
 }
 
-.card-form a .forgot-pass {
+.form-content .wrap-link-pw .show-pass {
     color: #4fad62;
-    font-size: 10px;
+    font-size: 11px;
     margin-top: 3px;
     text-align: right;
+    border: none;
+    background: none;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+.form-content .wrap-link-pw .show-pass:hover {
+    color: #97f564;
 }
 
 .form-border {
@@ -106,14 +117,22 @@ body {
     font-size: 10px;
     margin-top: 16px;
     text-align: center;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
 }
+
+.card-form footer .signup:hover {
+    color: #97f564;
+}
+
 .card-form footer .submit-btn {
-    /* background: linear-gradient(90deg, #1bff48, #00961e); */
-    background: linear-gradient(90deg, #ffd900, #FF8C00);
+    background: linear-gradient(90deg, #1bff48, #00961e);
     border: none;
     border-radius: 21px;
-    box-shadow: 0px 1px 5px #FF8C00;
-    /* box-shadow: 0px 1px 5px #4fad62; */
+    box-shadow: 0px 1px 5px #4fad62;
     cursor: pointer;
     color: white;
     height: 42.3px;
@@ -134,9 +153,8 @@ body {
 
 .card-form footer .submit-btn:hover {
     animation: btn-gradient 70ms infinite alternate;
-    box-shadow: 0px 1px 10px #FF8C00;
-    /*box-shadow: 0px 1px 10px #4fad62;
-    */-webkit-animation: btn-gradient 100ms infinite alternate;
+    box-shadow: 0px 1px 10px #4fad62;
+    -webkit-animation: btn-gradient 70ms infinite alternate;
     -webkit-animation: btn-gradient 70ms infinite alternate;
 }
 

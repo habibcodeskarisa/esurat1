@@ -11,19 +11,26 @@
 
 <body>
 
+
     <div class="card-content">
         <?php
+        session_start();
+
+        require_once "database.php";
+
         if (isset($_POST["login"])) {
             $email = $_POST["email"];
             $password = $_POST["password"];
-            require_once "database.php";
+
             $sql = "SELECT * FROM users WHERE email = '$email'";
             $result = mysqli_query($conn, $sql);
             $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
             if ($user) {
                 if (password_verify($password, $user["password"])) {
-                    header("Location: index.php");
-                    die();
+                    $_SESSION['username'] = $user['username']; // Mengatur session untuk username
+                    $_SESSION['email'] = $email; // Mengatur session untuk email
+                    header("Location: http://192.168.100.254/jabatanuam/index.php"); // Redirect ke halaman index setelah login berhasil
+                    exit();
                 } else {
                     echo "<div class='alert alert-danger'>Password tidak cocok</div>";
                 }
@@ -32,6 +39,8 @@
             }
         }
         ?>
+
+
 
         <form action="login.php" method="post" class="card-form">
             <!-- JUDUL | START -->
@@ -49,11 +58,12 @@
                 <div class="form-border"></div>
                 <!-- Label - Input = Password -->
                 <label for="password">Password</label>
-                <input type="password" name="password" required>
+                <input type="password" name="password" id="password" required>
                 <div class="form-border"></div>
-                <a href="#">
-                    <legend class="forgot-pass">Lupa password?</legend>
-                </a>
+                <div class="wrap-link-pw">
+                    <button type="button" id="showPassword" class="show-pass">Show Password</button>
+                    <!-- <a href="forgot-password.php" class="forgot-pass">Lupa password?</a> -->
+                </div>
             </main>
             <!-- FORM INPUT | END -->
 
@@ -66,15 +76,15 @@
         </form>
     </div>
 
-    <!-- <script defer>
-        const togglePassword = document.getElementById('togglePassword');
-        const password = document.getElementById('password');
+    <script defer>
+        document.getElementById("showPassword").addEventListener("mousedown", function() {
+            document.getElementById("password").type = "text";
+        });
 
-        togglePassword.addEventListener('click', function() {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-        }); 
-    </script> -->
+        document.getElementById("showPassword").addEventListener("mouseup", function() {
+            document.getElementById("password").type = "password";
+        });
+    </script>
 
 </body>
 
