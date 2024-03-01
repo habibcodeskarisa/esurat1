@@ -80,6 +80,40 @@ body {
     text-align: left;
 }
 
+/* Tampilan opsi yang dipilih */
+.input-jabatan option:checked {
+    background-color: #a6f77b; /* warna latar belakang opsi yang dipilih */
+}
+
+/* Tampilan dropdown */
+.input-jabatan {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 5px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    appearance: none; /* menghilangkan default styling browser */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 15px 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+    margin-left: -6px;
+}
+
+/* .input-jabatan:focus {
+    border-color: #a6f77b; 
+    box-shadow: 0 0 5px #02aa6c; 
+    outline: none; 
+}
+ */
+
 .form-border {
     background: linear-gradient(90deg, #a6f77b, #02aa6c );
     height: 2px;
@@ -150,31 +184,3 @@ body {
 .card-form footer .signin:hover {
     color: #8ae8a1;
 }
-
-/* Smartphone */
-/* @media (max-width: 576px) {
-    .container {
-        padding: 20px;
-    }
-} */
-
-/* Tablet */
-/* @media (min-width: 576px) and (max-width: 768px) {
-    .container {
-        padding: 30px;
-    }
-} */
-
-/* Laptop */
-/* @media (min-width: 768px) and (max-width: 992px) {
-    .container {
-        padding: 40px;
-    }
-} */
-
-/* Desktop */
-/* @media (min-width: 992px) {
-    .container {
-        padding: 50px;
-    }
-} */
