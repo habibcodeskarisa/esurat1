@@ -29,7 +29,7 @@
                 if (password_verify($password, $user["password"])) {
                     $_SESSION['username'] = $user['username']; // Mengatur session untuk username
                     $_SESSION['email'] = $email; // Mengatur session untuk email
-                    header("Location: http://192.168.100.254/jabatanuam/index.php"); // Redirect ke halaman index setelah login berhasil
+                    header("Location: http://192.168.100.238/jabatanuam/index.php"); // Redirect ke halaman index setelah login berhasil
                     exit();
                 } else {
                     echo "<div class='alert alert-danger'>Password tidak cocok</div>";

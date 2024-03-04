@@ -10,12 +10,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* overflow: hidden; */
     padding: 50px;
-    background-repeat: no-repeat;
-    font-family: "Open Sans", sans-serif;
-    background:linear-gradient(160deg, #4fad62, #02aa6c);
+    background: linear-gradient(160deg, #4fad62, #02aa6c);
     height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #4fad62, #02aa6c);
+    z-index: -1;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .card-content {
@@ -23,11 +45,14 @@ body {
     border-radius: 8px;
     box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
     padding-top: 45px!important;
-    height: 400px;
-    margin: 3rem auto   8.1rem auto;
-    /* width: 329px; */
+    height: 440px;
+    width: 329px;
+    margin: 3rem auto 8.1rem auto;
     padding: 12px 44px;
+    position: relative;
+    z-index: 1;
 }
+
 
 .card-content .alert {
     position: absolute;
@@ -94,9 +119,9 @@ body {
     border: none;
     outline: none;
     background-color: transparent;
-    appearance: none; /* menghilangkan default styling browser */
+    /* appearance: none;
     -webkit-appearance: none;
-    -moz-appearance: none;
+    -moz-appearance: none; */
     width: 100%;
     padding: 15px 5px;
     border-radius: 5px;
@@ -104,7 +129,8 @@ body {
     font-size: 12px;
     text-align: left;
     cursor: pointer;
-    margin-left: -6px;
+    margin-left: -8px;
+    font-family: "Open Sans", sans-serif;
 }
 
 /* .input-jabatan:focus {
