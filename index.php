@@ -104,7 +104,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST["logout"])) {
     session_unset();
     session_destroy();
-    header("Location: http://192.168.100.240/login-register/login.php");
+    header("Location: http://192.168.100.228/login-register/login.php");
     exit();
 }
 
@@ -125,120 +125,182 @@ if (isset($_POST["logout"])) {
     <link rel="shortcut icon" href="https://uam.ac.id/wp-content/uploads/2022/07/logo_horizontal-768x307.png" type="image/x-icon">
     <!-- Custom CSS -->
     <style>
-        /* Gaya kustom */
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
+    /* Gaya kustom untuk body */
+    body {
+        background: linear-gradient(to bottom, #ffffff, #f2f2f2); /* Gradien latar belakang */
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333; /* Warna teks */
+        line-height: 1.6; /* Jarak antar baris */
+    }
+
+    .card .card-header {
+        margin: 0 16px -19px!important;
+    }
+
+    .header-name {
+        background-color: #343a40;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Menyusun tombol Tambah Data secara vertikal di tengah */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-name span {
+        font-size: 25px;
+        font-family: 'Poppins', sans-serif;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .search-form {
+        margin-bottom: 10px;
+    }
+    
+    .card .search-form .input-group {
+        margin-bottom: -10px;
+    }
+
+    .card .search-form .input-group .btn-primary {
+        width: 100px;
+        margin-right: -600px!important;
+    }
+
+    .header-name .btn-success {
+        margin: 5px -585px 5px 0px!important; /* Membuat tombol Tambah Data lebih kecil */
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .table {
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* TABLE UTAMA BAGIAN AKSI */
+    .table-warning tr .th-aksi-utama {
+        /* width: 509px; */
+        width: 520px;
+    }
+    
+    .table .btn {
+        margin: 1px -5px;
+    }
+
+    .wrap-table-data .tr-table-utama .td-aksi-utama {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    /* Efek hover pada baris tabel */
+    .tr-table-utama:hover {
+        background-color: #f0f0f0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Efek hover pada tombol aksi */
+    .td-aksi-utama button:hover {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+    /* Efek hover pada header tabel */
+    .table-warning th:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Style untuk header */
+    .header-name {
+        background-color: #343a40;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-name img {
+        width: 120px;
+        height: 48px;
+    }
+
+    .header-name h3 {
+        margin-bottom: 0;
+    }
+
+    /* Efek hover pada tombol */
+    .header-name .btn:hover {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+    }
+
+    /* Efek hover pada input search */
+    .header-name .search-input:hover {
+        border-color: #ced4da;
+        transition: border-color 0.2s ease;
+    }
+
+    .header-name .btn-primary:hover {
+        background-color: #3f91f7;
+        border-color: #3f91f7;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+
+    /* Responsif CSS */
+    @media only screen and (max-width: 767px) {
+        .mx-auto {
+            padding: 0 10px;
         }
 
-        .card .card-header {
-            margin: 0 16px -19px!important;
-        }
-
-        .header-name {
-            background-color: #343a40;
-            color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Menyusun tombol Tambah Data secara vertikal di tengah */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-name span {
-            font-size: 25px;
-            font-family: 'Poppins', sans-serif;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .search-form {
+        .input-group {
+            width: 100%;
             margin-bottom: 10px;
-        }
-        
-        .card .search-form .input-group {
-            margin-bottom: -10px;
-        }
-
-        .card .search-form .input-group .btn-primary {
-            width: 100px;
-            margin-right: -600px!important;
         }
 
         .header-name .btn-success {
-            margin: 5px -585px 5px 0px!important; /* Membuat tombol Tambah Data lebih kecil */
-            padding: 8px 15px;
+            margin: 10px 0;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            margin: 5px 0;
+        }
+
+        .btn {
+            margin: 0 5px;
+        }
+        .btn-tambah {
+            margin: 0 5px;
+            padding: 4px 8px;
             font-size: 14px;
+            height: auto;
+            line-height: 1.5;
+            min-width: auto;
         }
 
-        .table {
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Penyesuaian posisi tombol tambah data */
+        .header-name .btn-tambah {
+            order: -1; /* Mengubah urutan tombol */
         }
 
-        /* TABLE UTAMA BAGIAN AKSI */
-        .table-warning tr .th-aksi-utama {
-            /* width: 509px; */
-            width: 520px;
+        /* Penyesuaian posisi judul */
+        .header-name img {
+            order: -2; /* Mengubah urutan judul */
         }
-        
+
+        /* Mengurangi ruang kosong di kolom aksi */
         .table .btn {
-            margin: 1px -5px;
+            margin: 5px;
         }
 
-        .wrap-table-data .tr-table-utama .td-aksi-utama {
-            display: flex;
-            justify-content: space-evenly;
-        }
+    }
+</style>
 
-        /* Responsif CSS */
-        @media only screen and (max-width: 767px) {
-            .mx-auto {
-                padding: 0 10px;
-            }
-
-            .input-group {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            .header-name .btn-success {
-                margin: 10px 0;
-            }
-
-            .edit-btn,
-            .delete-btn {
-                margin: 5px 0;
-            }
-
-            .btn {
-                margin: 0 5px;
-            }
-            .btn-tambah {
-                margin: 0 5px;
-                padding: 4px 8px;
-                font-size: 14px;
-                height: auto;
-                line-height: 1.5;
-                min-width: auto;
-            }
-
-            /* Penyesuaian posisi tombol tambah data */
-            .header-name .btn-tambah {
-                order: -1; /* Mengubah urutan tombol */
-            }
-
-            /* Penyesuaian posisi judul */
-            .header-name img {
-                order: -2; /* Mengubah urutan judul */
-            }
-
-            /* Mengurangi ruang kosong di kolom aksi */
-            .table .btn {
-                margin: 5px;
-            }
-
-        }
-    </style>
 </head>
 <body>
     <div class="mx-auto">
@@ -476,7 +538,7 @@ if (isset($_POST["logout"])) {
                 if (result.isConfirmed) {
                     // Jika pengguna menekan Ya, logout
                     // Lakukan pengalihan halaman ke halaman login
-                    window.location.href = 'http://192.168.100.240/login-register/login.php';
+                    window.location.href = 'http://192.168.100.228/login-register/login.php';
                 }
             });
         });
