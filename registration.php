@@ -60,8 +60,12 @@ if (isset($_POST["submit"])) {
             $_SESSION['username'] = $username; // Mengatur session untuk username
             $_SESSION['email'] = $email; // Mengatur session untuk email
 
-            header("Location: login.php"); // Redirect ke halaman login setelah registrasi berhasil
-            exit();
+            // Tampilkan modal
+            $_SESSION['show_modal'] = true;
+
+            // Redirect ke halaman yang sama
+            // header("Location: login.php"); // Redirect ke halaman login setelah registrasi berhasil
+            // exit();
         } else {
             die("Ada yang salah");
         }
@@ -120,10 +124,31 @@ if (isset($_POST["submit"])) {
             </main>
 
             <footer>
-                <input class="submit-btn" type="submit" value="Register" name="submit">
+                <input class="submit-btn" type="submit" value="Register" name="submit" id="registerBtn">
                 <a href="login.php" class="signin">Sudah punya akun?</a>
             </footer>
         </form>
+    </div>
+
+    <!-- MODAL -->
+
+    <div id="openmodal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <header class="container-modal">
+                    <a href="#" id="btnCloseModal" class="btn-close">X</a>
+                    <h1>Regsiter</h1>
+                </header>
+                <main class="container-modal">
+                    <p>
+                        TerimaKasih! Anda Berhasil Mendaftar...
+                    </p>
+                </main>
+                <footer class="container-modal">
+                    <h1>Silahkan</h1>
+                </footer>
+            </div>
+        </div>
     </div>
 
     <script defer>
@@ -134,6 +159,18 @@ if (isset($_POST["submit"])) {
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
             this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        // Tambahkan script untuk menampilkan modal setelah registrasi berhasil
+        <?php if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']) : ?>
+            document.getElementById('openmodal').classList.add('show-modal');
+            // Hapus session setelah modal ditampilkan
+            <?php unset($_SESSION['show_modal']); ?>
+        <?php endif; ?>
+
+        // BTN CLOSE MODAL
+        document.getElementById('btnCloseModal').addEventListener('click', function() {
+            document.getElementById('openmodal').classList.remove('show-modal');
         });
     </script>
 </body>
