@@ -104,7 +104,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST["logout"])) {
     session_unset();
     session_destroy();
-    header("Location: http://192.168.100.228/login-register/login.php");
+    header("Location: http://192.168.100.181/login-register/login.php");
     exit();
 }
 
@@ -297,6 +297,15 @@ if (isset($_POST["logout"])) {
         .table .btn {
             margin: 5px;
         }
+        /* Efek hover pada tombol */
+        .btn {
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
 
     }
 </style>
@@ -538,7 +547,7 @@ if (isset($_POST["logout"])) {
                 if (result.isConfirmed) {
                     // Jika pengguna menekan Ya, logout
                     // Lakukan pengalihan halaman ke halaman login
-                    window.location.href = 'http://192.168.100.228/login-register/login.php';
+                    window.location.href = 'http://192.168.100.181/login-register/login.php';
                 }
             });
         });
