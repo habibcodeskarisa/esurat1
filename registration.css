@@ -257,6 +257,7 @@ select {
 }
 
 /*  MODAL */
+
 .modal {
     display: none;
     position: fixed;

@@ -133,7 +133,7 @@ if (isset($_POST["submit"])) {
     <!-- MODAL -->
 
     <div id="openmodal" class="modal">
-        <div class="modal-dialog">
+        <div class="modal-dialog out">
             <div class="modal-content">
                 <header class="container-modal">
                     <a href="#" id="btnCloseModal" class="btn-close">X</a>
@@ -165,6 +165,9 @@ if (isset($_POST["submit"])) {
         <?php if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']) : ?>
             document.getElementById('openmodal').classList.add('show-modal');
             // Hapus session setelah modal ditampilkan
+            setTimeout(() => {
+                document.getElementById('openmodal').classList.remove('show-modal');
+            }, 1500); // Hilangkan modal setelah 2 detik
             <?php unset($_SESSION['show_modal']); ?>
         <?php endif; ?>
 
@@ -173,6 +176,7 @@ if (isset($_POST["submit"])) {
             document.getElementById('openmodal').classList.remove('show-modal');
         });
     </script>
+
 </body>
 
 </html>

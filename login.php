@@ -15,7 +15,7 @@
             $_SESSION['username'] = $user['username']; // Mengatur session untuk username
             $_SESSION['email'] = $email; // Mengatur session untuk email
 
-            header("Location: http://192.168.100.182/jabatanuam/index.php"); // Redirect ke halaman login setelah registrasi berhasil
+            header("Location: http://192.168.100.156/jabatanuam/index.php"); // Redirect ke halaman login setelah registrasi berhasil
             exit();
         } else {
             echo "<div class='alert alert-danger'>Password tidak cocok</div>";
