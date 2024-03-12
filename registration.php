@@ -145,7 +145,7 @@ if (isset($_POST["submit"])) {
                     </p>
                 </main>
                 <footer class="container-modal">
-                    <h1>Silahkan</h1>
+                    <a href="#" class="btnSilahkan">OK</a>
                 </footer>
             </div>
         </div>
@@ -167,7 +167,7 @@ if (isset($_POST["submit"])) {
             // Hapus session setelah modal ditampilkan
             setTimeout(() => {
                 document.getElementById('openmodal').classList.remove('show-modal');
-            }, 1500); // Hilangkan modal setelah 2 detik
+            }, 3000); // Hilangkan modal setelah 2 detik
             <?php unset($_SESSION['show_modal']); ?>
         <?php endif; ?>
 
