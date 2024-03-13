@@ -32,6 +32,18 @@ if (isset($_POST["submit"])) {
         array_push($errors, "Token tidak valid");
     }
 
+    // Validasi jabatan
+    $sqlCheckJabatan = "SELECT * FROM users WHERE jabatan = ?";
+    $stmtCheckJabatan = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmtCheckJabatan, $sqlCheckJabatan);
+    mysqli_stmt_bind_param($stmtCheckJabatan, "s", $jabatan);
+    mysqli_stmt_execute($stmtCheckJabatan);
+    $resultCheckJabatan = mysqli_stmt_get_result($stmtCheckJabatan);
+
+    if (mysqli_num_rows($resultCheckJabatan) > 0) {
+        array_push($errors, "Jabatan sudah terdaftar");
+    }
+
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
     $rowCount = mysqli_num_rows($result);
@@ -52,6 +64,37 @@ if (isset($_POST["submit"])) {
         if ($prepareStmt) {
             mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $passwordHash, $jabatan);
             mysqli_stmt_execute($stmt);
+
+            // Memasukkan data ke dalam tabel jabatan yang sesuai
+            switch ($jabatan) {
+                case "Rektor":
+                    $sqlJabatan = "INSERT INTO rektor (user_id) VALUES (?)";
+                    break;
+                case "Wakil Rektor 1":
+                    $sqlJabatan = "INSERT INTO wakil_rektor_1 (user_id) VALUES (?)";
+                    break;
+                case "Dekan FST":
+                    $sqlJabatan = "INSERT INTO dekan_fst (user_id) VALUES (?)";
+                    break;
+                case "Dekan FEB":
+                    $sqlJabatan = "INSERT INTO dekan_feb (user_id) VALUES (?)";
+                    break;
+                case "Dekan FIK":
+                    $sqlJabatan = "INSERT INTO dekan_fik (user_id) VALUES (?)";
+                    break;
+                default:
+                    // Handle case when no matching jabatan found
+                    break;
+            }
+
+            // Memasukkan data ke tabel jabatan yang sesuai
+            if (isset($sqlJabatan)) {
+                $stmtJabatan = mysqli_stmt_init($conn);
+                mysqli_stmt_prepare($stmtJabatan, $sqlJabatan);
+                $lastInsertedId = mysqli_insert_id($conn);
+                mysqli_stmt_bind_param($stmtJabatan, "i", $lastInsertedId);
+                mysqli_stmt_execute($stmtJabatan);
+            }
 
             // Simpan jabatan dan token ke dalam session
             $_SESSION['jabatan'] = $jabatan;
