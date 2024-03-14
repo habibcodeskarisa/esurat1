@@ -178,3 +178,54 @@ body {
     -webkit-animation: btn-gradient 70ms infinite alternate;
     -webkit-animation: btn-gradient 70ms infinite alternate;
 }
+
+/* CSS - Remember Me Checkbox */
+#rememberMe {
+    display: none; /* Sembunyikan checkbox default */
+}
+#rememberMe + label {
+    font-size: 14px;
+    color: #555;
+    margin-left: 10px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    color: #4fad62;
+    font-size: 11px;
+    margin-top: 3px;
+    text-align: right;
+    border: none;
+    background: none;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+#rememberMe + label:before {
+    content: "";
+    display: inline-block;
+    width: 10px; /* Sesuaikan ukuran dengan font-size label */
+    height: 10px; /* Sesuaikan ukuran dengan font-size label */
+    border: 1px solid #555;
+    border-radius: 3px;
+    position: absolute;
+    left: -15px;
+    top: 3px; /* Sesuaikan posisi vertikal dengan font-size label */
+}
+#rememberMe:checked + label:before {
+    background-color: #007bff;
+}
+#rememberMe + label:after {
+    content: "\2713"; /* Tanda centang */
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    left: 4px;
+    top: 3px; /* Sesuaikan posisi vertikal dengan font-size label */
+    display: none;
+}
+#rememberMe:checked + label:after {
+    display: block;
+}
