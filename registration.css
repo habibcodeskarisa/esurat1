@@ -1,24 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
-::selection {
-    color: white;
-    background-color: #4fad62;
-}
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
-    background: linear-gradient(160deg, #4fad62, #02aa6c);
+    /* background: linear-gradient(160deg, #4fad62, #02aa6c); */
+    background: #02aa6c;
     height: 100vh;
     overflow: hidden;
     position: relative;
     font-family: "Open Sans", sans-serif;
 }
 
-.background-animation {
+.swal2-container {
+    z-index: 99999999;
+    position: fixed;
+    /* Ubah dari 'absolute' menjadi 'fixed' */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    width: 100vw;
+}
+
+/* .background-animation {
     position: absolute;
     top: 0;
     left: 0;
@@ -40,26 +47,33 @@ body {
     100% {
         background-position: 0% 50%;
     }
-}
+} */
 
 .card-content {
     background: #fbfbfb;
     border-radius: 8px;
     box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-    padding-top: 45px!important;
-    height: 440px;
+    padding-top: 45px !important;
+    height: 460px;
     width: 329px;
     margin: 3rem auto 8.1rem auto;
-    padding: 12px 44px;
+    padding: 12px 50px 50px 50px;
     position: relative;
-    z-index: 1;
+    z-index: 999;
     font-family: "Open Sans", sans-serif;
 }
 
-
-.card-content .alert {
+/* .position-err-message {
     position: absolute;
-    margin-top: -137px!important;
+    margin-top: -240px!important;
+    margin-left: -25px!important;
+    width: 150px;
+    text-align: center;
+}
+
+.error-message {
+    position: absolute;
+    margin-top: -240px!important;
     width: 150px;
     text-align: center;
     color: #721c24;
@@ -68,11 +82,8 @@ body {
     padding: .75rem 1.25rem;
     border: 1px solid transparent;
     border-radius: .25rem;
-    -webkit-border-radius: .25rem;
-    -moz-border-radius: .25rem;
-    -ms-border-radius: .25rem;
-    -o-border-radius: .25rem;
-}
+    z-index: 900;
+} */
 
 .card-content .card-form {
     letter-spacing: 1px;
@@ -88,7 +99,7 @@ body {
 
 .card-form h1 {
     text-align: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 100;
     letter-spacing: 2px;
     color: #02aa6c;
@@ -115,7 +126,8 @@ body {
 
 /* Tampilan opsi yang dipilih */
 .input-jabatan option:checked {
-    background-color: #a6f77b; /* warna latar belakang opsi yang dipilih */
+    background-color: #a6f77b;
+    /* warna latar belakang opsi yang dipilih */
 }
 
 /* Tampilan dropdown */
@@ -146,7 +158,7 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    
+
     /* Padding dan border */
     padding: 8px 0 8px 12px;
     border: 1px solid #cccccc;
@@ -168,7 +180,7 @@ select {
  */
 
 .form-border {
-    background: linear-gradient(90deg, #a6f77b, #02aa6c );
+    background: linear-gradient(90deg, #a6f77b, #02aa6c);
     height: 2px;
     width: 100%;
 }
@@ -182,8 +194,7 @@ select {
 
 .form-group input {
     width: 100%;
-    margin-top: -20px;
-    padding-bottom: 5px;
+    padding: 10px 0 10px 0;
     border: none;
     outline: none;
     background-color: transparent;
@@ -194,7 +205,7 @@ select {
     position: relative;
 }
 
-.toggle-password {
+.form-content .password-input .toggle-password {
     position: absolute;
     right: 18px;
     top: 50%;
@@ -202,10 +213,7 @@ select {
     cursor: pointer;
     color: #02aa6c;
     font-size: 16px;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
+    z-index: 999 !important;
 }
 
 .card-form footer {
@@ -220,10 +228,10 @@ select {
     box-shadow: 0px 1px 5px #4fad62;
     cursor: pointer;
     color: white;
-    height: 42.3px;
     margin: 0 auto;
     margin-top: 20px;
-    width: 190px;
+    height: 50px;
+    width: 100%;
     background-size: 150%;
 }
 
@@ -231,6 +239,7 @@ select {
     from {
         background-position: right;
     }
+
     to {
         background-position: left;
     }
@@ -238,15 +247,16 @@ select {
 
 .card-form footer .submit-btn:hover {
     box-shadow: 0px 1px 10px #4fad62;
-    animation: btn-gradient 70ms infinite alternate;
-    -webkit-animation: btn-gradient 100ms infinite alternate;
-    -webkit-animation: btn-gradient 70ms infinite alternate;
+    background-color: #00961e;
+    animation: btn-gradient 10ms infinite alternate;
+    -webkit-animation: btn-gradient 10ms infinite alternate;
+    -webkit-animation: btn-gradient 10ms infinite alternate;
 }
 
 .card-form footer .signin {
     text-decoration: none;
     color: #4fad62;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 16px;
     text-align: center;
     transition: color 0.3s;
@@ -260,16 +270,17 @@ select {
 
 .modal {
     display: none;
-    position: fixed;
+    /* position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.1);
-    z-index: 9999; /* Atur z-index modal agar lebih tinggi dari z-index elemen lain */
+    z-index: 9999; */
 }
 
+/* 
 .modal:target {
     display: table;
     position: absolute;
@@ -281,7 +292,7 @@ select {
     text-align: center;
     height: 100vh;
     width: 100vw;
-    z-index: 10000; /* Atur z-index modal-dialog agar lebih tinggi dari z-index elemen lain */
+    z-index: 10000;
 }
 
 .modal-dialog > .modal-content {
@@ -364,4 +375,23 @@ select {
 
 .btnSilahkan:hover {
     background-color: #45a049;
+}
+ */
+
+.card-form .form-content input[type="text"]:valid,
+.card-form .form-content input[type="email"]:valid {
+    background-repeat: no-repeat;
+    background-position: calc(100% - 50px) center;
+    background-size: 20px;
+    padding-right: 30px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/8215/8215539.png');
+}
+
+.card-form .form-content input[type="password"]:valid {
+    /* Tidak ada ikon pada input password */
+    background-image: none;
+}
+.card-form .form-content input[type="text"][name="token"]:valid {
+    /* Tidak ada ikon pada input token */
+    background-image: none;
 }

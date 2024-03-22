@@ -32,6 +32,20 @@ if (isset($_POST["submit"])) {
         array_push($errors, "Token tidak valid");
     }
 
+
+    // Validasi username unik
+    $sqlCheckUsername = "SELECT * FROM users WHERE username = ?";
+    $stmtCheckUsername = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmtCheckUsername, $sqlCheckUsername);
+    mysqli_stmt_bind_param($stmtCheckUsername, "s", $username);
+    mysqli_stmt_execute($stmtCheckUsername);
+    $resultCheckUsername = mysqli_stmt_get_result($stmtCheckUsername);
+
+    if (mysqli_num_rows($resultCheckUsername) > 0) {
+        array_push($errors, "Username sudah terdaftar");
+    }
+
+
     // Validasi jabatan
     $sqlCheckJabatan = "SELECT * FROM users WHERE jabatan = ?";
     $stmtCheckJabatan = mysqli_stmt_init($conn);
@@ -52,9 +66,17 @@ if (isset($_POST["submit"])) {
     }
 
     if (count($errors) > 0) {
+        echo '<script>';
         foreach ($errors as $error) {
-            echo "<div class='alert alert-danger'>$error</div>";
+            echo "Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '$error',
+                showConfirmButton: false,
+                timer: 1000
+            });";
         }
+        echo '</script>';
     } else {
         // Memasukkan data ke dalam database
         $sql = "INSERT INTO users (username, email, password, jabatan) VALUE (?, ?, ?, ?)";
@@ -125,6 +147,7 @@ if (isset($_POST["submit"])) {
     <title>Registration Page</title>
     <link rel="stylesheet" href="registration.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -161,7 +184,7 @@ if (isset($_POST["submit"])) {
                 </select>
                 <div class="form-border"></div>
 
-                <label for="token">Token</label>
+                <label for="token">Token Jabatan</label>
                 <input type="text" name="token" required>
                 <div class="form-border"></div>
             </main>
@@ -174,7 +197,7 @@ if (isset($_POST["submit"])) {
     </div>
 
     <!-- MODAL -->
-
+    <!-- 
     <div id="openmodal" class="modal">
         <div class="modal-dialog out">
             <div class="modal-content">
@@ -192,7 +215,7 @@ if (isset($_POST["submit"])) {
                 </footer>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script defer>
         const togglePassword = document.querySelector('.toggle-password');
@@ -205,19 +228,60 @@ if (isset($_POST["submit"])) {
         });
 
         // Tambahkan script untuk menampilkan modal setelah registrasi berhasil
-        <?php if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']) : ?>
-            document.getElementById('openmodal').classList.add('show-modal');
-            // Hapus session setelah modal ditampilkan
-            setTimeout(() => {
-                document.getElementById('openmodal').classList.remove('show-modal');
-            }, 3000); // Hilangkan modal setelah 2 detik
-            <?php unset($_SESSION['show_modal']); ?>
-        <?php endif; ?>
+        // <?php if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']) : ?>
+        //     Swal.fire({
+        //         icon: 'success',
+        //         title: 'Registrasi Berhasil',
+        //         text: 'TerimaKasih! Anda Berhasil Mendaftar...',
+        //         showConfirmButton: false,
+        //         timer: 1000
+        //     });
+
+        //     <?php unset($_SESSION['show_modal']); ?>
+        // <?php endif; ?>
 
         // BTN CLOSE MODAL
-        document.getElementById('btnCloseModal').addEventListener('click', function() {
-            document.getElementById('openmodal').classList.remove('show-modal');
-        });
+        // document.getElementById('btnCloseModal').addEventListener('click', function() {
+        //     document.getElementById('openmodal').classList.remove('show-modal');
+        // });
+
+        // function hideErrorMessage() {
+        //     const errorMessages = document.querySelectorAll('.error-message');
+        //     errorMessages.forEach(errorMessage => {
+        //         setTimeout(() => {
+        //             errorMessage.style.display = 'none';
+        //         }, 2000);
+        //     });
+        // }
+
+        // window.onload = function() {
+        //     hideErrorMessage();
+        // };
+
+        <?php
+        if (count($errors) > 0) {
+            echo 'document.addEventListener("DOMContentLoaded", function() {';
+            foreach ($errors as $error) {
+                echo "Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '$error',
+                    showConfirmButton: false,
+                    timer: 1000
+                });";
+            }
+            echo '});';
+        }
+
+        echo 'Swal.fire({
+            icon: "success",
+            title: "Registrasi Berhasil",
+            text: "TerimaKasih! Anda Berhasil Mendaftar...",
+            showConfirmButton: false,
+            timer: 1000
+        });';
+
+        ?>
     </script>
 
 </body>
